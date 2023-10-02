@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [formData, setFormData] = React.useState(
+    {firstName: "", lastName: "", Email: ""}
+)
+
+/**
+ * Challenge: add an email field/state to the form
+ */
+
+// i just added  an email to the object set above and below added another email input form 
+
+console.log(formData)
+
+function handleChange(event) {
+    setFormData(prevFormData => {
+        return {
+            ...prevFormData,
+            [event.target.name]: event.target.value
+        }
+    })
+}
+
+return (
+    <form>
+        <input
+            type="text"
+            placeholder="First Name"
+            onChange={handleChange}
+            name="firstName"
+        />
+        <input
+            type="text"
+            placeholder="Last Name"
+            onChange={handleChange}
+            name="lastName"
+        />
+
+<input
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            name="Email"
+        />
+    </form>
+)
 }
 
 export default App;
